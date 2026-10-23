@@ -1,16 +1,14 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, render_template
 
 from app.services.ticket_service import validate_ticket_description
+from app.services.ticket_analyzer import analyze_ticket
 
 # Blueprint groups related routes together
 main_bp = Blueprint('main', __name__)
 
 @main_bp.route('/', methods=['GET'])
 def home():
-    return jsonify({
-        'application':'triq',
-        'message':'AI workflow assistant is running..'
-    })
+    return render_template('index.html')
 
 @main_bp.route('/health', methods=['GET'])
 def health():
@@ -43,15 +41,18 @@ def create_ticket():
             'error': error
         }), 400
 
-    
+
+    # Analyze the ticket description using the AI service
+    analysis = analyze_ticket(description)
 
     # Return the validated ticket.
     # Database persistance is not implemented in this example.
     return jsonify({
-        'message': 'Ticket received successfully.',
+        'message': 'Ticket analyzed successfully.',
         'ticket': {
             'description': description,
-        }
+        },
+        'analysis': analysis
     }), 201
 
     

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://kit.fontawesome.com/08c0396a01.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="{{ url_for('static', filename='images/triq-logo.png' )}}" alt="triq-logo">
+        </div>
+        <div class="sidebar-body">
+            <div class="navigation">
+                <a href="" title="View Dashboard"><i class="fas fa-th-large"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        {% block content %}
+    	{% endblock %}
+	</div>
+</body>
+</html>
