@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Environment variables and secrets
+.env
+
+# Local database and instance files
+instance/
+*.db
+
+# Test and tooling caches
+.pytest_cache/
+.coverage
