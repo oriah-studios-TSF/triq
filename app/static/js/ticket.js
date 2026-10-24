@@ -11,8 +11,20 @@ const categoryE = document.getElementById('category');
 const priorityE = document.getElementById('priority');
 const summaryE = document.getElementById('summary');
 const solutionsList = document.getElementById('solutions-list');
+
+// Toast functionallity
 const toast = document.getElementById('toast');
 const toastMessage = document.getElementById('toast-message');
+
+function showToast(message, backgroundColor) {
+    toastMessage.innerHTML = message;
+    toast.style.backgroundColor = backgroundColor;
+    toast.classList.add("show");
+
+    setTimeout(function () {
+        toast.classList.remove("show");
+    }, 3000);
+}
 
 // Update the character count as the user types.
 descriptionInput.addEventListener('input', function () {
@@ -30,7 +42,7 @@ ticketForm.addEventListener('submit', async function (event) {
 
     // Prevent empty descriptions from being submitted
     if (!description) {
-        descriptionError.textContent = 'Please enter an issue description. This field cannot be empty.';
+        showToast('<i class="fas fa-exclamation-triangle"></i> Please enter an issue description', '#ff0000')
         formInput.focus()
         return;
     }
@@ -58,12 +70,7 @@ ticketForm.addEventListener('submit', async function (event) {
         // Handle errors returned by Flask
         if (!response.ok) {
             // Display error message in toast
-            toastMessage.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> ${data.error || 'An error occurred while analyzing the ticket.'}`;
-            toast.style.backgroundColor = '#ff0000';
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+            showToast('<i class="fas fa-exclamation-triangle"></i> An error occurred while analyzing the ticket.', '#ff0000');
             // Throw an error to stop further execution
             throw new Error(data.error || 'An error occurred while analyzing the ticket.');
         }
@@ -84,14 +91,14 @@ ticketForm.addEventListener('submit', async function (event) {
             paragraph.textContent = '- ' + step;
             solutionsList.appendChild(paragraph);
         });
+
+        // Display the toast notification
+        showToast('<i class="fas fa-check-circle"></i> Ticket analyzed successfully!', '#008000');
+        
     } catch (error) {
         // Display the error message in the toast notification
-        toastMessage.textContent = error.message || 'An error occurred while analyzing the ticket.';
-        toast.style.backgroundColor = '#ff0000';
-        toast.classList.add('show');
-        setTimeout(function () {
-            toast.classList.remove('show');
-        }, 3000);
+        showToast('<i class="fas fa-exclamation-circle"></i> An error occurred while analyzing the ticket.', '#ff0000')
+        console.log(error)
     } finally {
         // Restore the button after the request finishes
         analyzeButton.disabled = false;
