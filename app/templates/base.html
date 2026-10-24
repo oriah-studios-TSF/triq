@@ -11,14 +11,21 @@
     <div class="sidebar">
         <div class="sidebar-header">
             <img src="{{ url_for('static', filename='images/triq-logo.png' )}}" alt="triq-logo">
+            <p class="sidebar-label"><i class="fas fa-briefcase"></i> Workspace</p>
         </div>
         <div class="sidebar-body">
             <div class="navigation">
-                <a href="" title="View Dashboard"><i class="fas fa-th-large"></i></a>
+                <a class="{% if request.endpoint == 'main.home' %}active{% endif %}" href="{{ url_for('main.home') }}" title="Ticket Analysis"><i class="fas fa-life-ring"></i> Ticket Analysis</a>
             </div>
         </div>
     </div>
     <div class="main-content">
+        <div class="main-content-top">
+            <div class="user-profile">
+                <p><i class="fas fa-user"></i> Molefe Ramotsepane</p>
+                <p> <i class="fas fa-id-card"></i> EMP0001</p>
+            </div>
+        </div>
         {% block content %}
     	{% endblock %}
 	</div>

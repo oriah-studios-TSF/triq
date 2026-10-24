@@ -1,0 +1,120 @@
+.main-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.main-header .breadcrumb {
+    font-size: 9pt;
+    color: grey;
+}
+
+.main-header .title {
+    font-size: 18pt;
+    font-weight: 600;
+    color: #0438ff;
+}
+
+.main-body {
+    margin: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.ticket-panel {
+    width: 50%;
+    border: 1px solid #ddd;
+    padding: 15px;
+}
+
+.analysis-panel {
+    width: 50%;
+    border: 1px solid #ddd;
+    padding: 15px;
+}
+
+.panel-heading h3 {
+    font-weight: 500;
+    font-size: 12pt;
+    margin-bottom: 2px;
+    color: #0438ff;
+}
+
+.panel-heading p {
+    font-size: 10pt;
+    color: grey;
+}
+
+#ticket-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+#ticket-form label {
+    font-size: 10pt;
+    margin-bottom: 10px;
+    color: #0438ff;
+}
+
+.form-input {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+#ticket-form textarea {
+    border: none;
+    width: 100%;
+    height: 200px;
+    outline: none;
+    resize: none;
+}
+
+.char-count {
+    font-size: 9pt;
+    color: grey;
+    float: right;
+    margin-top: 5px;
+}
+
+#analyze-button, #clear-button{
+    background: #0438ff;
+    color: white;
+    border: 1px solid #0438ff;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    width: fit-content;
+    font-size: 10pt;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+#clear-button{
+    background: none;
+    color: #0438ff;
+    border: 1px solid #0438ff;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    width: fit-content;
+    font-size: 10pt;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+#clear-button:hover {
+    background-color: #0438ff;
+    color: white;
+    transform: translateY(-1px);
+}
+
+#analyze-button:hover {
+    opacity: 0.6;
+    transform: translateY(-1px);
+}
+
+
