@@ -14,34 +14,57 @@
             <h1 class="title">Ticket Analysis</h1>
     	</div>
 
-     <div class="main-body">
-         <div class="ticket-panel">
-             <div class="panel-heading">
-                 <h3>Describe the issue</h3>
-                 <p>Include any symptoms or error messages.</p>
-             </div>
+        <div class="main-body">
+            <div class="ticket-panel">
+                <div class="panel-heading">
+                    <h3>Describe the issue</h3>
+                    <p>Include any symptoms or error messages.</p>
+                </div>
+    
+                <form action="" id="ticket-form">
+                    <label for="description">Issue description *</label>
+                    <div class="form-input">
+                        <textarea name="description" id="description" maxlength="2000" required placeholder="E.g I cannot connect to the Wi-Fi..."></textarea>
+                        <span id="char-count" class="char-count">0/2000</span>
+                    </div>
+                    <div class="buttons">
+                        <button type="submit" id="analyze-button">Analyze ticket <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" id="clear-button"><i class="fas fa-trash-alt"></i> Clear</button>
+                    </div>
+    
+                    <p id="form-message" role="status"></p>
+                </form>
+            </div>
+            <div class="analysis-panel">
+                <div class="panel-heading">
+                    <h3>Analysis results</h3>
+                    <p>Your ticket will be analyzed and the results will be displayed here.</p>
+                </div>
+                <div class="analysis-content">
+                    <div class="analysis-content-top">
+                        <div class="card category">
+                            <h4><i class="fa-solid fa-layer-group"></i> Category</h4>
+                            <p id="category">Network Connectivity</p>
+                        </div>
+                        <div class="card priority">
+                            <h4><i class="fa-solid fa-flag"></i> Priority</h4>
+                            <p id="priority">High</p>
+                        </div>
+                        <div class="card summary">
+                            <h4><i class="fa-solid fa-file-lines"></i> Summary</h4>
+                            <p id="summary">The network connectivity issue is causing delays in data transmission.</p>
+                        </div>
+                    </div>
 
-             <form action="" id="ticket-form">
-                 <label for="description">Issue description *</label>
-                 <div class="form-input">
-                     <textarea name="description" id="description" maxlength="2000" required placeholder="E.g I cannot connect to the Wi-Fi..."></textarea>
-                     <span id="char-count" class="char-count">0/2000</span>
-                 </div>
-                 <div class="buttons">
-                     <button type="button" id="analyze-button">Analyze ticket <i class="fas fa-arrow-right"></i></button>
-                     <button type="button" id="clear-button"><i class="fas fa-trash-alt"></i> Clear</button>
-                 </div>
-
-                 <p id="form-message" role="status"></p>
-             </form>
-         </div>
-         <div class="analysis-panel">
-             <div class="panel-heading">
-                 <h3>Analysis results</h3>
-                 <p>Your ticket will be analyzed and the results will be displayed here.</p>
-             </div>
-         </div>
-     </div>
+                    <div class="analysis-content-body">
+                        <div class="solutions" id="solutions-list">
+                            <h4>Recommended troubleshooting Steps</h4>
+                            <p>- <span id="solution"> Check network cables and connections.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     
 	{% endblock %}
