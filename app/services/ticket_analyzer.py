@@ -24,7 +24,7 @@ def analyze_ticket(description):
     if any(word in text for word in [
         'wi-fi', 'wifi', 'internet', 'network', 'connection'
     ]):
-        category = 'Network'
+        category = 'Network Connectivity'
         troubleshooting_steps = [
             'Check whether the device is connected to the correct network.',
             'Check whether other devices can connect.',
@@ -34,7 +34,7 @@ def analyze_ticket(description):
 
     # Identify common account and access issues
     elif any(word in text for word in [
-        'passowrd', 'login', 'log in', 'locked out', 'sign in'
+        'password', 'login', 'log in', 'locked out', 'sign in', 'logging in', 'unable to log in',
     ]):
         category = 'Account Access'
         troubleshooting_steps = [
@@ -48,7 +48,7 @@ def analyze_ticket(description):
     elif any(word in text for word in [
         "laptop", "keyboard", "mouse", "monitor", "printer"
     ]):
-        category = "Hardware"
+        category = "Hardware Issue"
         troubleshooting_steps = [
             "Check the device's power and physical connections.",
             "Restart the affected device if appropriate.",
@@ -59,7 +59,7 @@ def analyze_ticket(description):
     # Mark potentially urgent issues with a higher priority.
     if any(word in text for word in [
         "urgent", "critical", "entire office", "all users",
-        "system down", "security breach"
+        "system down", "security breach", 'system is down'
     ]):
         priority = "High"
 

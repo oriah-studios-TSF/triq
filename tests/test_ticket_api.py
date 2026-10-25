@@ -36,7 +36,7 @@ class TestTicketAPI(unittest.TestCase):
         )
         self.assertIn("ticket", data)
         self.assertIn("analysis", data)
-        self.assertEqual(data["analysis"]["category"], "Network")
+        self.assertEqual(data["analysis"]["category"], "Network Connectivity")
 
     def test_empty_description_is_rejected(self):
         response = self.client.post(

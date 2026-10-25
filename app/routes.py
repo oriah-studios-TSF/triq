@@ -10,10 +10,10 @@ main_bp = Blueprint('main', __name__)
 def home():
     return render_template('index.html')
 
-@main_bp.route('/health', methods=['GET'])
+@main_bp.route('/api/health', methods=['GET'])
 def health():
     return jsonify({
-        'status':'healthy'
+        'status':'ok'
     }), 200
 
 @main_bp.route('/api/tickets', methods=['POST'])
