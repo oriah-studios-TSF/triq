@@ -5,6 +5,8 @@ __pycache__/
 
 # Environment variables and secrets
 .env
+.env.*
+!.env.example
 
 # Local database and instance files
 instance/

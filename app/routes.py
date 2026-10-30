@@ -1,7 +1,8 @@
-from flask import Blueprint, jsonify, request, render_template
+from flask import Blueprint, jsonify, request, render_template, current_app
 
 from app.services.ticket_service import validate_ticket_description
 from app.services.ticket_analyzer import analyze_ticket
+from app.services.ai_ticket_analyzer import analyze_ticket_with_ai, AIAnalysisError
 
 # Blueprint groups related routes together
 main_bp = Blueprint('main', __name__)
@@ -43,15 +44,37 @@ def create_ticket():
 
 
     # Analyze the ticket description using the AI service
-    analysis = analyze_ticket(description)
+    # If the AI service is unavailable, use the rules-based service
+
+    ai_provider = current_app.config.get('AI_PROVIDER', 'mock')
+
+    if ai_provider == 'ollama':
+        try:
+            analysis = analyze_ticket_with_ai(description)
+            analysis_source = 'ai'
+    
+        except AIAnalysisError as error:
+            current_app.logger.warning('AI analysis failed, falling back to rules-based analysis. Reason: %s', error)
+            analysis = analyze_ticket(description)
+            analysis_source = 'rules'
+            
+    elif ai_provider == 'mock':
+        analysis = analyze_ticket(description)
+        analysis_source = 'rules'
+
+    else:
+        return jsonify({
+            'error': 'The configured AI provider is not supported.'
+        }), 500
 
     # Return the validated ticket.
-    # Database persistance is not implemented in this example.
+    # Database persistence is not implemented in this example.
     return jsonify({
         'message': 'Ticket analyzed successfully.',
         'ticket': {
             'description': description,
         },
+        'analysis_source': analysis_source,
         'analysis': analysis
     }), 201
 

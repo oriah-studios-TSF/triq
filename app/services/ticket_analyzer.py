@@ -19,6 +19,10 @@ def analyze_ticket(description):
         'Try to reproduce the problem.',
         'Escalate to IT support if the issue persists.'
     ]
+    explanation = (
+        'The issue did not match a specific predefined category. '
+        'General troubleshooting steps have been recommended'
+    )
 
     # Identify common network-related issues
     if any(word in text for word in [
@@ -31,6 +35,11 @@ def analyze_ticket(description):
             'Reconnect to the network and test again.',
             'Escalate to IT support if the issue persists.'
         ]
+        explanation = (
+            "The ticket contains network-related keywords. "
+            "The recommended steps focus on checking connectivity, "
+            "network availability, and reconnection."
+        )
 
     # Identify common account and access issues
     elif any(word in text for word in [
@@ -43,6 +52,11 @@ def analyze_ticket(description):
             "Use the approved password-reset process if needed.",
             "Escalate to IT support if access is still unavailable."
         ]
+        explanation = (
+            "The ticket contains account-access-related keywords. "
+            "The recommended steps focus on verifying account details, "
+            "checking account status, and using approved recovery procedures."
+        )
 
     # Identify common hardware-related issues.
     elif any(word in text for word in [
@@ -55,6 +69,11 @@ def analyze_ticket(description):
             "Check whether the problem continues.",
             "Escalate to IT support if the issue persists."
         ]
+        explanation = (
+            "The ticket contains hardware-related keywords. "
+            "The recommended steps focus on checking physical connections, "
+            "device operation, and whether the issue persists."
+        )
 
     # Mark potentially urgent issues with a higher priority.
     if any(word in text for word in [
@@ -68,7 +87,9 @@ def analyze_ticket(description):
         "category": category,
         "priority": priority,
         "summary": summary,
-        "troubleshooting_steps": troubleshooting_steps
+        "troubleshooting_steps": troubleshooting_steps,
+        "explanation": explanation
+        
     }
 
 

@@ -10,17 +10,15 @@ class Config:
     # Set the secret key from the environment variable
     SECRET_KEY = os.getenv('SECRET_KEY')
 
-    # Set the database URI from the environment variable
-    SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
-
-    # Disable modification tracking for SQLAlchemy
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-
     # Controls whether the Flask application should be in debug mode
     DEBUG = True
 
     # Select which ticket analyzer to use
     AI_PROVIDER = os.getenv('AI_PROVIDER')
+
+    # Ollama configuration
+    OLLAMA_MODEL = os.getenv('OLLAMA_MODEL','qwen3:1.7b')
+    OLLAMA_BASE_URL = os.getenv('OLLAMA_BASE_URL', 'http://localhost:11434')
 
     
 

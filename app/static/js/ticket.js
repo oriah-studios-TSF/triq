@@ -10,7 +10,9 @@ const formInput = document.getElementById('form-input');
 const categoryE = document.getElementById('category');
 const priorityE = document.getElementById('priority');
 const summaryE = document.getElementById('summary');
+const explanationE = document.getElementById('explanation');
 const solutionsList = document.getElementById('solutions-list');
+const analysisSourceE = document.getElementById('analysis-source');
 
 // Toast functionallity
 const toast = document.getElementById('toast');
@@ -78,10 +80,18 @@ ticketForm.addEventListener('submit', async function (event) {
         // Store the analysis returned by the backend
         const analysis = data.analysis
 
+        // Identify which service produced the analysis
+        if (data.analysis_source === 'ai') {
+            analysisSourceE.textContent = 'Powered by Ollama LLM - qwen3:1.7b'
+        } else {
+            analysisSourceE.textContent = 'Rule-Based Analysis'
+        }
+
         // Pupulate existing HTMl Elements
         categoryE.textContent = analysis.category;
         priorityE.textContent = analysis.priority;
         summaryE.textContent = analysis.summary;
+        explanationE.textContent = `Explanation: ${analysis.explanation}`;
 
         // Display the troubleshooting steps
         solutionsList.innerHTML = '';
@@ -118,6 +128,8 @@ clearButton.addEventListener('click', function () {
     categoryE.textContent = '';
     priorityE.textContent = '';
     summaryE.innerHTML = '<i class="fas fa-circle-info"></i> Your analysis will appear here.';
+    explanationE.textContent = '';
+    analysisSourceE.textContent = '';
 
     // Clear troubleshhoting steps.
     solutionsList.innerHTML = '';
