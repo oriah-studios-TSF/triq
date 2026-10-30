@@ -49,7 +49,7 @@ triq analyses IT support ticket descriptions and generates structured results to
 Clone the repository:
 
 ```bash
-git clone YOUR_REPOSITORY_URL
+git clone https://github.com/oriah-studios-TSF/triq.git
 cd triq
 ```
 
