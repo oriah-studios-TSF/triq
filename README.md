@@ -1,4 +1,4 @@
-# triq
+<img src="app\static\images\triq-logo.png" alt="triq logo" width="200"/>
 
 An AI-assisted IT support ticket analyzer built with Python and Flask.
 
@@ -14,6 +14,20 @@ triq analyses IT support ticket descriptions and generates structured results to
 - Explanation of analysis results.
 - Rule-based fallback when the AI service is unavailable.
 - Input validation and error handling.
+
+## Screenshots
+
+### Initial Interface
+![triq initial interface](docs/screenshots/initial_state.jpeg)
+
+### AI Analysis in Progress
+![triq analyzing a ticket](docs/screenshots/processing_state.jpeg)
+
+### AI Analysis Results
+![triq AI analysis results](docs/screenshots/result_state.jpeg)
+
+### Rule-Based Fallback
+![triq rule-based fallback](docs/screenshots/fallback_state.jpeg)
 
 ## Technologies
 
